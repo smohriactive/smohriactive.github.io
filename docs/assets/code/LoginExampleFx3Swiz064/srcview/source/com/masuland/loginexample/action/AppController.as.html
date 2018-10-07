@@ -1,0 +1,256 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>AppController.as</title>
+<link rel="stylesheet" type="text/css" href="../../../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptpackage">package</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">action</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">business</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">IAppDelegate</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">action</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">event</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LoadLocaleEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">action</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">event</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LoadStyleEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">action</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">responder</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">GetSettingsResponder</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">action</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">responder</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LoginResponder</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">action</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">responder</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">RegisterResponder</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">action</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">responder</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">UpdateUserResponder</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">AppModel</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">state</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">AppStackState</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">state</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LoginBoxState</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">state</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">SettingsBoxState</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">AuthenticationVO</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LayoutVO</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LocaleVO</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">StyleVO</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">UserVO</span>;
+    
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Event</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">IEventDispatcher</span>;
+    
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Application</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ResourceEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">StyleEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">resources</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ResourceManager</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">styles</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">StyleManager</span>;
+    
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">org</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">swizframework</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Swiz</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">org</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">swizframework</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">controller</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">AbstractController</span>;
+    
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Bindable</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">AppController</span> <span class="ActionScriptReserved">extends</span> <span class="ActionScriptDefault_Text">AbstractController</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptComment">//----------------------
+</span>        <span class="ActionScriptComment">// Properties
+</span>        <span class="ActionScriptComment">//----------------------
+</span>        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Autowire</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">appModel</span>:<span class="ActionScriptDefault_Text">AppModel</span>;
+        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Autowire</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">appEventNames</span>:<span class="ActionScriptDefault_Text">AppEventNames</span>;
+
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Autowire</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">appDelegate</span>:<span class="ActionScriptDefault_Text">IAppDelegate</span>;
+        
+        <span class="ActionScriptComment">//----------------------
+</span>        <span class="ActionScriptComment">// Methods
+</span>        <span class="ActionScriptComment">//----------------------
+</span>        
+        <span class="ActionScriptASDoc">/**
+         * 
+         */</span>
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Mediate</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'${appEventNames.INIT_APP}'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">onInitComplete</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span>:<span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span> 
+        <span class="ActionScriptBracket/Brace">{</span>    
+            <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">appStackState</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">AppStackState</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LOGIN</span>;
+            <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginBoxState</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">LoginBoxState</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LOGIN</span>;
+            <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">settingsBoxState</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">SettingsBoxState</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">OPEN</span>;
+            
+            <span class="ActionScriptComment">// get settings
+</span>            <span class="ActionScriptDefault_Text">Swiz</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">dispatch</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">AppEventNames</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">GET_SETTINGS</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Mediate</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'${appEventNames.GET_SETTINGS}'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">getSettings</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">responder</span>:<span class="ActionScriptDefault_Text">GetSettingsResponder</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">GetSettingsResponder</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptDefault_Text">executeServiceCall</span><span class="ActionScriptBracket/Brace">(</span>
+                <span class="ActionScriptDefault_Text">appDelegate</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getSettings</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">,</span>
+                <span class="ActionScriptDefault_Text">responder</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">result</span><span class="ActionScriptOperator">,</span>
+                <span class="ActionScriptDefault_Text">responder</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">fault</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Mediate</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'${appEventNames.LOGIN}'</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">properties</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">'auth'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">login</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">auth</span>:<span class="ActionScriptDefault_Text">AuthenticationVO</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">nextEvent</span>:<span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptOperator">=</span><span class="ActionScriptReserved">null</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginBoxState</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">LoginBoxState</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LOGIN_PROGRESS</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">responder</span>:<span class="ActionScriptDefault_Text">LoginResponder</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">LoginResponder</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">nextEvent</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptDefault_Text">executeServiceCall</span><span class="ActionScriptBracket/Brace">(</span>
+                <span class="ActionScriptDefault_Text">appDelegate</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">login</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">auth</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">,</span>
+                <span class="ActionScriptDefault_Text">responder</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">result</span><span class="ActionScriptOperator">,</span>
+                <span class="ActionScriptDefault_Text">responder</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">fault</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Mediate</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'${appEventNames.LOGOUT}'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">logout</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginBoxState</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">LoginBoxState</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LOGIN</span>;
+            <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">appStackState</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">AppStackState</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LOGIN</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Mediate</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'${appEventNames.REGISTER}'</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">properties</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">'auth'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">register</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">auth</span>:<span class="ActionScriptDefault_Text">AuthenticationVO</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">nextEvent</span>:<span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptOperator">=</span><span class="ActionScriptReserved">null</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginBoxState</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">LoginBoxState</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">REGISTER_PROGRESS</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">responder</span>:<span class="ActionScriptDefault_Text">RegisterResponder</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">RegisterResponder</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">nextEvent</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptDefault_Text">executeServiceCall</span><span class="ActionScriptBracket/Brace">(</span>
+                <span class="ActionScriptDefault_Text">appDelegate</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">register</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">auth</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">,</span>
+                <span class="ActionScriptDefault_Text">responder</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">result</span><span class="ActionScriptOperator">,</span>
+                <span class="ActionScriptDefault_Text">responder</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">fault</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Mediate</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'${appEventNames.UPDATE_USER}'</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">properties</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">'user'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">updateUser</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">user</span>:<span class="ActionScriptDefault_Text">UserVO</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">responder</span>:<span class="ActionScriptDefault_Text">UpdateUserResponder</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">UpdateUserResponder</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptDefault_Text">executeServiceCall</span><span class="ActionScriptBracket/Brace">(</span>
+                <span class="ActionScriptDefault_Text">appDelegate</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">updateUser</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">user</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">,</span>
+                <span class="ActionScriptDefault_Text">responder</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">result</span><span class="ActionScriptOperator">,</span>
+                <span class="ActionScriptDefault_Text">responder</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">fault</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptASDoc">/**
+         * 
+         */</span>
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Mediate</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'${appEventNames.GOTO_LOGIN}'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">gotoLogin</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span> 
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginBoxState</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">LoginBoxState</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LOGIN</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+
+        <span class="ActionScriptASDoc">/**
+         * 
+         */</span>
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Mediate</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'${appEventNames.GOTO_REGISTER}'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">gotoRegister</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span> 
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginBoxState</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">LoginBoxState</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">REGISTER</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+
+        <span class="ActionScriptASDoc">/**
+         * 
+         */</span>
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Mediate</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'${appEventNames.LOAD_LOCALE}'</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">properties</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">'locale'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">loadLocale</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">locale</span>:<span class="ActionScriptDefault_Text">LocaleVO</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span> 
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">currentLocale</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">locale</span>;
+            
+            <span class="ActionScriptDefault_Text">ResourceManager</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getInstance</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">localeChain</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">[</span> <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">currentLocale</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">code</span> <span class="ActionScriptBracket/Brace">]</span>;
+            <span class="ActionScriptDefault_Text">ResourceManager</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getInstance</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">update</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+
+            <span class="ActionScriptComment">// TODO ... Resource update bug
+</span>            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">oldLoginBoxState</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginBoxState</span>;
+            <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginBoxState</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">LoginBoxState</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">HIDDEN</span>;
+            <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginBoxState</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">oldLoginBoxState</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">oldAppStackState</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">appStackState</span>;
+            <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">appStackState</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">AppStackState</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">HIDDEN</span>;
+            <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">appStackState</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">oldAppStackState</span>;
+            
+<span class="ActionScriptComment">/*            var resourceModuleURL:String;
+            var eventDispatcher:IEventDispatcher;
+            
+            if (appModel.currentLocale != null)
+            {
+                resourceModuleURL = 'AppResources_' + appModel.currentLocale.code + '.swf';
+                eventDispatcher = ResourceManager.getInstance().loadResourceModule(resourceModuleURL);
+                
+                if (eventDispatcher != null)
+                {
+                    eventDispatcher.addEventListener(ResourceEvent.COMPLETE, onLoadLocaleComplete);
+                    eventDispatcher.addEventListener(ResourceEvent.ERROR, onLoadLocaleError);
+                }
+            }
+*/</span>        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptASDoc">/**
+         * 
+         */</span>
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Mediate</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'${appEventNames.LOAD_STYLE}'</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">properties</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">'style'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">loadStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">style</span>:<span class="ActionScriptDefault_Text">StyleVO</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span> 
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">myEvent</span>:<span class="ActionScriptDefault_Text">IEventDispatcher</span>;
+            
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">appModel</span> <span class="ActionScriptOperator">!=</span> <span class="ActionScriptReserved">null</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">currentStyle</span> <span class="ActionScriptOperator">!=</span> <span class="ActionScriptReserved">null</span><span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptDefault_Text">StyleManager</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">unloadStyleDeclarations</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">currentStyle</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">path</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptReserved">false</span><span class="ActionScriptBracket/Brace">)</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+
+                <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">currentStyle</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">style</span>;
+                
+                <span class="ActionScriptDefault_Text">myEvent</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">StyleManager</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loadStyleDeclarations</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">style</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">path</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptReserved">true</span><span class="ActionScriptBracket/Brace">)</span>;
+                <span class="ActionScriptDefault_Text">myEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">StyleEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">COMPLETE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">loadStyle_completeHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+                <span class="ActionScriptDefault_Text">myEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">StyleEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ERROR</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">loadStyle_errorHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+
+        <span class="ActionScriptASDoc">/**
+         * 
+         */</span>
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Mediate</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'${appEventNames.LOAD_LAYOUT}'</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">properties</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">'layout'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">loadLayout</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">layout</span>:<span class="ActionScriptDefault_Text">LayoutVO</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span> 
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">currentLayout</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">layout</span>;
+            
+            <span class="ActionScriptComment">// load style
+</span>            <span class="ActionScriptDefault_Text">Swiz</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">dispatchEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">LoadStyleEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">StyleVO</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">currentLayout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">styles</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getItemAt</span><span class="ActionScriptBracket/Brace">(</span>0<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptComment">// load locales
+</span>            <span class="ActionScriptDefault_Text">Swiz</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">dispatchEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">LoadLocaleEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">LocaleVO</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">currentLayout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">locales</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getItemAt</span><span class="ActionScriptBracket/Brace">(</span>0<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptComment">//----------------------
+</span>        <span class="ActionScriptComment">// Handler
+</span>        <span class="ActionScriptComment">//----------------------
+</span>        
+        <span class="ActionScriptASDoc">/**
+         * 
+         */</span>
+        <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">loadLocale_completeHandler</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span>:<span class="ActionScriptDefault_Text">ResourceEvent</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>            
+            <span class="ActionScriptDefault_Text">ResourceManager</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getInstance</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">localeChain</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">[</span> <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">currentLocale</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">code</span> <span class="ActionScriptBracket/Brace">]</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptASDoc">/**
+         * 
+         */</span>
+        <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">loadLocale_errorHandler</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span>:<span class="ActionScriptDefault_Text">ResourceEvent</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>            
+        <span class="ActionScriptBracket/Brace">}</span>
+
+        <span class="ActionScriptASDoc">/**
+         * 
+         */</span>
+        <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">loadStyle_completeHandler</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span>:<span class="ActionScriptDefault_Text">StyleEvent</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isApplicationVisible</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptASDoc">/**
+         * 
+         */</span>
+        <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">loadStyle_errorHandler</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span>:<span class="ActionScriptDefault_Text">StyleEvent</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isApplicationVisible</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span>
+</pre></body>
+</html>

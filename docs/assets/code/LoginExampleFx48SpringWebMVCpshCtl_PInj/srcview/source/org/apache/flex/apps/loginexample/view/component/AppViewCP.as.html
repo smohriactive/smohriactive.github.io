@@ -1,0 +1,114 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>AppViewCP.as</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptpackage">package</span> <span class="ActionScriptDefault_Text">org</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">apache</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">flex</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">apps</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">view</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">component</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">org</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">apache</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">flex</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">apps</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LayoutVO</span>;
+    
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">automation</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">IAutomationObject</span>;
+    
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">components</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Group</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">components</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">supportClasses</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">SkinnableComponent</span>;
+
+    <span class="ActionScriptASDoc">/**
+     * 
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">AppViewCP</span> <span class="ActionScriptReserved">extends</span> <span class="ActionScriptDefault_Text">SkinnableComponent</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptComment">//----------------------
+</span>        <span class="ActionScriptComment">// Skin Parts
+</span>        <span class="ActionScriptComment">//----------------------
+</span>        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">SkinPart</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'true'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">cp_layout</span>:<span class="ActionScriptDefault_Text">LayoutStackCP</span>;
+        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">SkinPart</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'false'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">cp_settings</span>:<span class="ActionScriptDefault_Text">SettingsBoxCP</span>;
+        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">SkinPart</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'false'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">bx_header</span>:<span class="ActionScriptDefault_Text">Group</span>;
+        
+        <span class="ActionScriptComment">//----------------------
+</span>        <span class="ActionScriptComment">// Properties
+</span>        <span class="ActionScriptComment">//----------------------
+</span>        
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_isApplicationVisible</span>:<span class="ActionScriptDefault_Text">Boolean</span>;
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_isApplicationVisibleDirty</span>:<span class="ActionScriptDefault_Text">Boolean</span>;
+        
+        <span class="ActionScriptComment">//----------------------
+</span>        <span class="ActionScriptComment">// Getter / Setter
+</span>        <span class="ActionScriptComment">//----------------------
+</span>        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Inject</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'appModel'</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">property</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">'isApplicationVisible'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Bindable</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">isApplicationVisible</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Boolean</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_isApplicationVisible</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">isApplicationVisible</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">Boolean</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">_isApplicationVisible</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+            <span class="ActionScriptDefault_Text">_isApplicationVisibleDirty</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+            
+            <span class="ActionScriptDefault_Text">invalidateProperties</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptComment">//----------------------
+</span>        <span class="ActionScriptComment">// Methods
+</span>        <span class="ActionScriptComment">//----------------------
+</span>        
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">createChildren</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">createChildren</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptDefault_Text">_isApplicationVisibleDirty</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">commitProperties</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">commitProperties</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_isApplicationVisibleDirty</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">skin</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">visible</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">_isApplicationVisible</span>;
+                <span class="ActionScriptDefault_Text">_isApplicationVisibleDirty</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptComment">//------------------------------
+</span>        <span class="ActionScriptComment">// Automation
+</span>        <span class="ActionScriptComment">//------------------------------
+</span>        
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">getAutomationChildren</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Array</span> 
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptDefault_Text">cp_layout</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">cp_settings</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">bx_header</span><span class="ActionScriptBracket/Brace">]</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">getAutomationChildAt</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">index</span>:<span class="ActionScriptDefault_Text">int</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">IAutomationObject</span> 
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">switch</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">index</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptReserved">case</span> 0:
+                    <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">cp_layout</span>;
+                    
+                <span class="ActionScriptReserved">case</span> 1:
+                    <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">cp_settings</span>;
+                    
+                <span class="ActionScriptReserved">default</span>:
+                    <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">bx_header</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">numAutomationChildren</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">int</span> 
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">return</span> 3;
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span></pre></body>
+</html>

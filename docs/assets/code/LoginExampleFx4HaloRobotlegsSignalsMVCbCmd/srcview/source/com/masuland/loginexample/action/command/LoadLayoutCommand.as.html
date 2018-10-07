@@ -1,0 +1,55 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>LoadLayoutCommand.as</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptpackage">package</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">action</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">command</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">action</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">signal</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LoadLocaleSignal</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">action</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">signal</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LoadStyleSignal</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">AppModel</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LayoutVO</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LocaleVO</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">StyleVO</span>;
+    
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">org</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">robotlegs</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">mvcs</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">SignalCommand</span>;
+
+    <span class="ActionScriptASDoc">/**
+     * @author masuland.com
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">LoadLayoutCommand</span> <span class="ActionScriptReserved">extends</span> <span class="ActionScriptDefault_Text">SignalCommand</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptComment">//----------------------
+</span>        <span class="ActionScriptComment">// Properties
+</span>        <span class="ActionScriptComment">//----------------------
+</span>        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Inject</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">appModel</span>:<span class="ActionScriptDefault_Text">AppModel</span>;
+
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Inject</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">layout</span>:<span class="ActionScriptDefault_Text">LayoutVO</span>;
+        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Inject</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">loadStyleSignal</span>:<span class="ActionScriptDefault_Text">LoadStyleSignal</span>;
+        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Inject</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">loadLocaleSignal</span>:<span class="ActionScriptDefault_Text">LoadLocaleSignal</span>;
+
+        <span class="ActionScriptComment">//----------------------
+</span>        <span class="ActionScriptComment">// Methods
+</span>        <span class="ActionScriptComment">//----------------------
+</span>        
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">execute</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">currentLayout</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">layout</span>;
+            
+            <span class="ActionScriptComment">// load style
+</span>            <span class="ActionScriptDefault_Text">loadStyleSignal</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">dispatch</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">StyleVO</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">currentLayout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">styles</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getItemAt</span><span class="ActionScriptBracket/Brace">(</span>0<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptComment">// load locales
+</span>            <span class="ActionScriptDefault_Text">loadLocaleSignal</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">dispatch</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">LocaleVO</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">currentLayout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">locales</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getItemAt</span><span class="ActionScriptBracket/Brace">(</span>0<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span>
+</pre></body>
+</html>

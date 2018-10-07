@@ -1,0 +1,82 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>NativeRelaySignal.as</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptpackage">package</span> <span class="ActionScriptDefault_Text">org</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">osflash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">signals</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">natives</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">org</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">osflash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">signals</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">DeluxeSignal</span>;
+
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Event</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">IEventDispatcher</span>;
+
+    <span class="ActionScriptASDoc">/**
+     * The NativeRelaySignal class is used to relay events from an IEventDispatcher
+     * to listeners.
+     * The difference as compared to NativeSignal is that
+     * NativeRelaySignal has its own dispatching code,
+     * whereas NativeSignal uses the IEventDispatcher to dispatch.
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">NativeRelaySignal</span> <span class="ActionScriptReserved">extends</span> <span class="ActionScriptDefault_Text">DeluxeSignal</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">protected</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_eventType</span>:<span class="ActionScriptDefault_Text">String</span>;
+
+        <span class="ActionScriptASDoc">/**
+         * Creates a new NativeRelaySignal instance to relay events from an IEventDispatcher.
+         * @param    target    An object that implements the flash.events.IEventDispatcher interface.
+         * @param    name    The event string name that would normally be passed to IEventDispatcher.addEventListener().
+         * @param    eventClass An optional class reference that enables an event type check in dispatch().
+         * Because the target is an IEventDispatcher,
+         * eventClass needs to be flash.events.Event or a subclass of it.
+         */</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">NativeRelaySignal</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">target</span>:<span class="ActionScriptDefault_Text">IEventDispatcher</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">eventType</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">eventClass</span>:<span class="ActionScriptDefault_Text">Class</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">null</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">super</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">target</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">eventClass</span> <span class="ActionScriptOperator">||</span> <span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">_eventType</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">eventType</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptASDoc">/** @inheritDoc */</span>
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">addWithPriority</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">listener</span>:<span class="ActionScriptDefault_Text">Function</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">priority</span>:<span class="ActionScriptDefault_Text">int</span> <span class="ActionScriptOperator">=</span> 0<span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Function</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">prevListenerCount</span>:<span class="ActionScriptDefault_Text">uint</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">slots</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span>;
+            <span class="ActionScriptComment">// Try to add first because it may throw an exception.
+</span>            <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addWithPriority</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">listener</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptComment">// Account for cases where the same listener is added twice.
+</span>            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">prevListenerCount</span> <span class="ActionScriptOperator">==</span> 0 <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptDefault_Text">slots</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span> <span class="ActionScriptOperator">==</span> 1<span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptDefault_Text">IEventDispatcher</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_target</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_eventType</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">dispatch</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptReserved">false</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">priority</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">listener</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptASDoc">/** @inheritDoc */</span>
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">addOnceWithPriority</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">listener</span>:<span class="ActionScriptDefault_Text">Function</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">priority</span>:<span class="ActionScriptDefault_Text">int</span> <span class="ActionScriptOperator">=</span> 0<span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Function</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">prevListenerCount</span>:<span class="ActionScriptDefault_Text">uint</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">slots</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span>;
+            <span class="ActionScriptComment">// Try to add first because it may throw an exception.
+</span>            <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addOnceWithPriority</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">listener</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptComment">// Account for cases where the same listener is added twice.
+</span>            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">prevListenerCount</span> <span class="ActionScriptOperator">==</span> 0 <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptDefault_Text">slots</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span> <span class="ActionScriptOperator">==</span> 1<span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptDefault_Text">IEventDispatcher</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_target</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_eventType</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">dispatch</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptReserved">false</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">priority</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">listener</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptASDoc">/** @inheritDoc */</span>
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">remove</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">listener</span>:<span class="ActionScriptDefault_Text">Function</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Function</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">prevListenerCount</span>:<span class="ActionScriptDefault_Text">uint</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">slots</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span>;
+            <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">remove</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">listener</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">prevListenerCount</span> <span class="ActionScriptOperator">==</span> 1 <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptDefault_Text">slots</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span> <span class="ActionScriptOperator">==</span> 0<span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptDefault_Text">IEventDispatcher</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_target</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">removeEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_eventType</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">dispatch</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">listener</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+    <span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span>
+</pre></body>
+</html>

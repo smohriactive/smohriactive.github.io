@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index>
+	<title>Source of LoginExampleFx3Swiz064</title>
+	<nodes>
+		<node label="html-template">
+			<node label="history">
+				<node icon="cssIcon" label="history.css" url="source/html-template/history/history.css.html"/>
+				<node label="history.js" url="source/html-template/history/history.js.txt"/>
+				<node icon="htmlIcon" label="historyFrame.html" url="source/html-template/history/historyFrame.html"/>
+			</node>
+			<node label="AC_OETags.js" url="source/html-template/AC_OETags.js.txt"/>
+			<node icon="htmlIcon" label="index.template.html" url="source/html-template/index.template.html"/>
+			<node icon="swfIcon" label="playerProductInstall.swf" url="source/html-template/playerProductInstall.swf"/>
+		</node>
+		<node label="libs">
+			<node label="swiz-0.6.4-flex3.swc" url="source/libs/swiz-0.6.4-flex3.swc"/>
+		</node>
+		<node label="src">
+			<node label="main">
+				<node label="flex">
+					<node icon="packageIcon" label="com.masuland.loginexample" expanded="true">
+						<node icon="mxmlIcon" label="AppBean.mxml" url="source/com/masuland/loginexample/AppBean.mxml.html"/>
+					</node>
+					<node icon="packageIcon" label="com.masuland.loginexample.action" expanded="true">
+						<node icon="actionScriptIcon" label="AppController.as" url="source/com/masuland/loginexample/action/AppController.as.html"/>
+						<node icon="actionScriptIcon" label="AppEventNames.as" url="source/com/masuland/loginexample/action/AppEventNames.as.html"/>
+					</node>
+					<node icon="packageIcon" label="com.masuland.loginexample.action.event" expanded="true">
+						<node icon="actionScriptIcon" label="LoadLayoutEvent.as" url="source/com/masuland/loginexample/action/event/LoadLayoutEvent.as.html"/>
+						<node icon="actionScriptIcon" label="LoadLocaleEvent.as" url="source/com/masuland/loginexample/action/event/LoadLocaleEvent.as.html"/>
+						<node icon="actionScriptIcon" label="LoadStyleEvent.as" url="source/com/masuland/loginexample/action/event/LoadStyleEvent.as.html"/>
+						<node icon="actionScriptIcon" label="LoginEvent.as" url="source/com/masuland/loginexample/action/event/LoginEvent.as.html"/>
+						<node icon="actionScriptIcon" label="RegisterEvent.as" url="source/com/masuland/loginexample/action/event/RegisterEvent.as.html"/>
+						<node icon="actionScriptIcon" label="UpdateUserEvent.as" url="source/com/masuland/loginexample/action/event/UpdateUserEvent.as.html"/>
+					</node>
+					<node icon="packageIcon" label="com.masuland.loginexample.action.responder" expanded="true">
+						<node icon="actionScriptIcon" label="GetSettingsResponder.as" url="source/com/masuland/loginexample/action/responder/GetSettingsResponder.as.html"/>
+						<node icon="actionScriptIcon" label="LoginResponder.as" url="source/com/masuland/loginexample/action/responder/LoginResponder.as.html"/>
+						<node icon="actionScriptIcon" label="RegisterResponder.as" url="source/com/masuland/loginexample/action/responder/RegisterResponder.as.html"/>
+						<node icon="actionScriptIcon" label="UpdateUserResponder.as" url="source/com/masuland/loginexample/action/responder/UpdateUserResponder.as.html"/>
+					</node>
+					<node icon="packageIcon" label="com.masuland.loginexample.business" expanded="true">
+						<node icon="actionScriptIcon" label="AppAmfDelegate.as" url="source/com/masuland/loginexample/business/AppAmfDelegate.as.html"/>
+						<node icon="actionScriptIcon" label="AppDynamicChannelSet.as" url="source/com/masuland/loginexample/business/AppDynamicChannelSet.as.html"/>
+						<node icon="actionScriptIcon" label="AppMockDelegate.as" url="source/com/masuland/loginexample/business/AppMockDelegate.as.html"/>
+						<node icon="actionScriptIcon" label="AppRemoteObject.as" url="source/com/masuland/loginexample/business/AppRemoteObject.as.html"/>
+						<node icon="actionScriptIcon" label="IAppDelegate.as" url="source/com/masuland/loginexample/business/IAppDelegate.as.html"/>
+					</node>
+					<node icon="packageIcon" label="com.masuland.loginexample.data" expanded="true">
+						<node icon="actionScriptIcon" label="AppModel.as" url="source/com/masuland/loginexample/data/AppModel.as.html"/>
+					</node>
+					<node icon="packageIcon" label="com.masuland.loginexample.data.state" expanded="true">
+						<node icon="actionScriptIcon" label="AppStackState.as" url="source/com/masuland/loginexample/data/state/AppStackState.as.html"/>
+						<node icon="actionScriptIcon" label="LoginBoxState.as" url="source/com/masuland/loginexample/data/state/LoginBoxState.as.html"/>
+						<node icon="actionScriptIcon" label="SettingsBoxState.as" url="source/com/masuland/loginexample/data/state/SettingsBoxState.as.html"/>
+					</node>
+					<node icon="packageIcon" label="com.masuland.loginexample.data.vo" expanded="true">
+						<node icon="actionScriptIcon" label="AuthenticationVO.as" url="source/com/masuland/loginexample/data/vo/AuthenticationVO.as.html"/>
+						<node icon="actionScriptIcon" label="LayoutVO.as" url="source/com/masuland/loginexample/data/vo/LayoutVO.as.html"/>
+						<node icon="actionScriptIcon" label="LocaleVO.as" url="source/com/masuland/loginexample/data/vo/LocaleVO.as.html"/>
+						<node icon="actionScriptIcon" label="SettingsVO.as" url="source/com/masuland/loginexample/data/vo/SettingsVO.as.html"/>
+						<node icon="actionScriptIcon" label="StyleVO.as" url="source/com/masuland/loginexample/data/vo/StyleVO.as.html"/>
+						<node icon="actionScriptIcon" label="UserVO.as" url="source/com/masuland/loginexample/data/vo/UserVO.as.html"/>
+					</node>
+					<node label="com.masuland.loginexample.service">
+					</node>
+					<node icon="packageIcon" label="com.masuland.loginexample.view" expanded="true">
+						<node icon="mxmlIcon" label="AppView.mxml" url="source/com/masuland/loginexample/view/AppView.mxml.html"/>
+						<node icon="mxmlIcon" label="LayoutStack.mxml" url="source/com/masuland/loginexample/view/LayoutStack.mxml.html"/>
+						<node icon="mxmlIcon" label="SettingsBox.mxml" url="source/com/masuland/loginexample/view/SettingsBox.mxml.html"/>
+					</node>
+					<node icon="packageIcon" label="com.masuland.loginexample.view.phone" expanded="true">
+						<node icon="mxmlIcon" label="AppStack.mxml" url="source/com/masuland/loginexample/view/phone/AppStack.mxml.html"/>
+						<node icon="mxmlIcon" label="LoginBox.mxml" url="source/com/masuland/loginexample/view/phone/LoginBox.mxml.html"/>
+						<node icon="mxmlIcon" label="UserBox.mxml" url="source/com/masuland/loginexample/view/phone/UserBox.mxml.html"/>
+					</node>
+					<node icon="packageIcon" label="com.masuland.loginexample.view.web" expanded="true">
+						<node icon="mxmlIcon" label="AppStack.mxml" url="source/com/masuland/loginexample/view/web/AppStack.mxml.html"/>
+						<node icon="mxmlIcon" label="LoginBox.mxml" url="source/com/masuland/loginexample/view/web/LoginBox.mxml.html"/>
+						<node icon="mxmlIcon" label="UserBox.mxml" url="source/com/masuland/loginexample/view/web/UserBox.mxml.html"/>
+					</node>
+					<node icon="mxmlAppIcon" selected="true" label="index.mxml" url="source/index.mxml.html"/>
+				</node>
+				<node label="locales">
+					<node label="de_DE">
+						<node label="resources.properties" url="source/src/main/locales/de_DE/resources.properties"/>
+					</node>
+					<node label="en_US">
+						<node label="resources.properties" url="source/src/main/locales/en_US/resources.properties"/>
+					</node>
+				</node>
+				<node icon="classpathIcon" label="resources" expanded="true">
+					<node label="images">
+						<node icon="imageIcon" label="icon_masuland.png" url="source/src/main/resources/images/icon_masuland.png.html"/>
+					</node>
+					<node label="style">
+						<node icon="cssIcon" label="login_example_phone_green.css" url="source/src/main/resources/style/login_example_phone_green.css.html"/>
+						<node icon="cssIcon" label="login_example_phone_red.css" url="source/src/main/resources/style/login_example_phone_red.css.html"/>
+						<node icon="cssIcon" label="login_example_web_green.css" url="source/src/main/resources/style/login_example_web_green.css.html"/>
+						<node icon="cssIcon" label="login_example_web_red.css" url="source/src/main/resources/style/login_example_web_red.css.html"/>
+					</node>
+				</node>
+			</node>
+			<node label="test">
+				<node icon="classpathIcon" label="flex" expanded="true">
+				</node>
+			</node>
+		</node>
+		<node label="build.properties.template" url="source/build.properties.template"/>
+		<node label="build_language_bundle.xml" url="source/build_language_bundle.xml.txt"/>
+		<node label="mit_licence.txt" url="source/mit_licence.txt"/>
+	</nodes>
+</index>

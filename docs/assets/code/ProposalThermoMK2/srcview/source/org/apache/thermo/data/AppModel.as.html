@@ -1,0 +1,48 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>AppModel.as</title>
+<link rel="stylesheet" type="text/css" href="../../../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptpackage">package</span> <span class="ActionScriptDefault_Text">org</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">apache</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">thermo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">org</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">apache</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">thermo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">FileVO</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">org</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">apache</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">thermo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">PerspectiveVO</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">org</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">apache</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">thermo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">SettingsVO</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">org</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">apache</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">thermo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ViewVO</span>;
+    
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Bindable</span><span class="ActionScriptBracket/Brace">]</span>
+    <span class="ActionScriptASDoc">/**
+     * @author masuland.com
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">AppModel</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptComment">//----------------------
+</span>        <span class="ActionScriptComment">// Properties
+</span>        <span class="ActionScriptComment">//----------------------
+</span>        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Publish</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'appModel'</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">objectId</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">'settings'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">settings</span>:<span class="ActionScriptDefault_Text">SettingsVO</span>;
+        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Publish</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'appModel'</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">objectId</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">'currentPerspective'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">currentPerspective</span>:<span class="ActionScriptDefault_Text">PerspectiveVO</span>;
+        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Publish</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'appModel'</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">objectId</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">'currentView'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">currentView</span>:<span class="ActionScriptDefault_Text">ViewVO</span>;
+        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Publish</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'appModel'</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">objectId</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">'currentFile'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">currentFile</span>:<span class="ActionScriptDefault_Text">FileVO</span>;
+        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Publish</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'appModel'</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">objectId</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">'isDesignModeActive'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">isDesignModeActive</span>:<span class="ActionScriptDefault_Text">Boolean</span>;
+        
+        <span class="ActionScriptComment">//----------------------
+</span>        <span class="ActionScriptComment">// Getters/Setters
+</span>        <span class="ActionScriptComment">//----------------------
+</span>    <span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span>
+</pre></body>
+</html>

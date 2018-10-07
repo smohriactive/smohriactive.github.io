@@ -1,0 +1,222 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>AppMockDelegate.as</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptpackage">package</span> <span class="ActionScriptDefault_Text">org</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">apache</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">thermo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">business</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">delegate</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">collections</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ArrayCollection</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">rpc</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">AsyncToken</span>;
+    
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">org</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">apache</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">thermo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">business</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">delegate</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">IAppDelegate</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">org</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">apache</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">thermo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">business</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">helper</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">MockDelegateHelper</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">org</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">apache</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">thermo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">PerspectiveVO</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">org</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">apache</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">thermo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">SettingsVO</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">org</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">apache</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">thermo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ViewVO</span>;
+    
+    <span class="ActionScriptASDoc">/**
+     * @author masuland.com
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">AppMockDelegate</span> <span class="ActionScriptReserved">implements</span> <span class="ActionScriptDefault_Text">IAppDelegate</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptComment">//----------------------
+</span>        <span class="ActionScriptComment">// Methods
+</span>        <span class="ActionScriptComment">//----------------------
+</span>        
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">getSettings</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">AsyncToken</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">settings</span>:<span class="ActionScriptDefault_Text">SettingsVO</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">SettingsVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">settings</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">perspectives</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ArrayCollection</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">perspective</span>:<span class="ActionScriptDefault_Text">PerspectiveVO</span>;
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">views</span>:<span class="ActionScriptDefault_Text">ArrayCollection</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">explorerView</span>:<span class="ActionScriptDefault_Text">ViewVO</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ViewVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">explorerView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">title</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"Explorer"</span>;
+            <span class="ActionScriptDefault_Text">explorerView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">icon</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"icons/explorer.png"</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">outlineView</span>:<span class="ActionScriptDefault_Text">ViewVO</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ViewVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">outlineView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">title</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"Outline"</span>;
+            <span class="ActionScriptDefault_Text">outlineView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">icon</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"icons/outline.png"</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">componentsView</span>:<span class="ActionScriptDefault_Text">ViewVO</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ViewVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">componentsView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">title</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"Components"</span>;
+            <span class="ActionScriptDefault_Text">componentsView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">icon</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"icons/components.png"</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">timelineView</span>:<span class="ActionScriptDefault_Text">ViewVO</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ViewVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">timelineView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">title</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"Timeline"</span>;
+            <span class="ActionScriptDefault_Text">timelineView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isDesignView</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">editorCompView</span>:<span class="ActionScriptDefault_Text">ViewVO</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ViewVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">editorCompView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">title</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"ExampleComponent.as"</span>;
+            <span class="ActionScriptDefault_Text">editorCompView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">icon</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"icons/as_file.png"</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">editorSkinView</span>:<span class="ActionScriptDefault_Text">ViewVO</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ViewVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">editorSkinView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">title</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"ExampleSkin.mxml"</span>;
+            <span class="ActionScriptDefault_Text">editorSkinView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">icon</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"icons/mxml_file.png"</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">editorStyleRedView</span>:<span class="ActionScriptDefault_Text">ViewVO</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ViewVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">editorStyleRedView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">title</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"style_red_1024x786.css"</span>;
+            <span class="ActionScriptDefault_Text">editorStyleRedView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">icon</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"icons/css_file.png"</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">editorStyleGreenView</span>:<span class="ActionScriptDefault_Text">ViewVO</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ViewVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">editorStyleGreenView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">title</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"style_green_320x480.css"</span>;
+            <span class="ActionScriptDefault_Text">editorStyleGreenView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">icon</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"icons/css_file.png"</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">problemsView</span>:<span class="ActionScriptDefault_Text">ViewVO</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ViewVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">problemsView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">title</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"Problems"</span>;
+            <span class="ActionScriptDefault_Text">problemsView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">icon</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"icons/problems.png"</span>;
+
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">statesView</span>:<span class="ActionScriptDefault_Text">ViewVO</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ViewVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">statesView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">title</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"Parts &amp; States"</span>;
+            <span class="ActionScriptDefault_Text">statesView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">icon</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"icons/state.png"</span>;
+            <span class="ActionScriptDefault_Text">statesView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isDesignView</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">layersView</span>:<span class="ActionScriptDefault_Text">ViewVO</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ViewVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">layersView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">title</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"Layers"</span>;
+            <span class="ActionScriptDefault_Text">layersView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isDesignView</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">interactionsView</span>:<span class="ActionScriptDefault_Text">ViewVO</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ViewVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">interactionsView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">title</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"Interactions"</span>;
+            <span class="ActionScriptDefault_Text">interactionsView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isDesignView</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">alignView</span>:<span class="ActionScriptDefault_Text">ViewVO</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ViewVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">alignView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">title</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"Align"</span>;
+            <span class="ActionScriptDefault_Text">alignView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isDesignView</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">propertiesView</span>:<span class="ActionScriptDefault_Text">ViewVO</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ViewVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">propertiesView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">title</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"Properties"</span>;
+            <span class="ActionScriptDefault_Text">propertiesView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">icon</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"icons/properties.png"</span>;
+            <span class="ActionScriptDefault_Text">propertiesView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isDesignView</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">stylesView</span>:<span class="ActionScriptDefault_Text">ViewVO</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ViewVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">stylesView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">title</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"Styles"</span>;
+            <span class="ActionScriptDefault_Text">stylesView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isDesignView</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">designTimeDataView</span>:<span class="ActionScriptDefault_Text">ViewVO</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ViewVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">designTimeDataView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">title</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"Design-Time Data"</span>;
+            <span class="ActionScriptDefault_Text">designTimeDataView</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isDesignView</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+
+            <span class="ActionScriptComment">//--------- Essentials ----------//
+</span>
+            <span class="ActionScriptDefault_Text">perspective</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">PerspectiveVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">perspective</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">title</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"Essentials"</span>;
+
+            <span class="ActionScriptComment">// Left-Top Views
+</span>            
+            <span class="ActionScriptDefault_Text">views</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ArrayCollection</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">explorerView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">outlineView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">perspective</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">leftTopViews</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">views</span>;
+            
+            <span class="ActionScriptComment">// Left-Top Views
+</span>            
+            <span class="ActionScriptDefault_Text">views</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ArrayCollection</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">componentsView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">perspective</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">leftBottomViews</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">views</span>;
+
+            <span class="ActionScriptComment">// Center-Top Views
+</span>
+            <span class="ActionScriptDefault_Text">views</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ArrayCollection</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">timelineView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">perspective</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">centerTopViews</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">views</span>;
+
+            <span class="ActionScriptComment">// Center-Mid Views
+</span>            
+            <span class="ActionScriptDefault_Text">views</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ArrayCollection</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">editorCompView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">editorSkinView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">editorStyleRedView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">editorStyleGreenView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">perspective</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">centerMidViews</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">views</span>;
+            
+            <span class="ActionScriptComment">// Center-Bottom Views
+</span>            
+            <span class="ActionScriptDefault_Text">views</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ArrayCollection</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">problemsView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">perspective</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">centerBottomViews</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">views</span>;
+            
+            <span class="ActionScriptComment">// Right-Top Views
+</span>            
+            <span class="ActionScriptDefault_Text">views</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ArrayCollection</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">statesView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">layersView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">perspective</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">rightTopViews</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">views</span>;
+            
+            <span class="ActionScriptComment">// Right-Mid Views
+</span>            
+            <span class="ActionScriptDefault_Text">views</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ArrayCollection</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">interactionsView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">alignView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">perspective</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">rightMidViews</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">views</span>;
+            
+            <span class="ActionScriptComment">// Right-Bottom Views
+</span>            
+            <span class="ActionScriptDefault_Text">views</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ArrayCollection</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">propertiesView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">stylesView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">perspective</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">rightBottomViews</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">views</span>;
+            
+            <span class="ActionScriptDefault_Text">settings</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">perspectives</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">perspective</span><span class="ActionScriptBracket/Brace">)</span>;
+
+            
+            <span class="ActionScriptComment">//--------- Classic ----------//
+</span>            
+            <span class="ActionScriptDefault_Text">perspective</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">PerspectiveVO</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">perspective</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">title</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"Classic"</span>;
+            
+            <span class="ActionScriptComment">// Center-Top Views
+</span>            
+            <span class="ActionScriptDefault_Text">views</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ArrayCollection</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">statesView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">perspective</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">centerTopViews</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">views</span>;
+            
+            <span class="ActionScriptComment">// Center-Mid Views
+</span>            
+            <span class="ActionScriptDefault_Text">views</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ArrayCollection</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">editorCompView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">editorSkinView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">editorStyleRedView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">editorStyleGreenView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">perspective</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">centerMidViews</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">views</span>;
+            
+            <span class="ActionScriptComment">// Center-Bottom Views
+</span>            
+            <span class="ActionScriptDefault_Text">views</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ArrayCollection</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">timelineView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">designTimeDataView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">componentsView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">perspective</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">centerBottomViews</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">views</span>;
+            
+            <span class="ActionScriptComment">// Right-Top Views
+</span>            
+            <span class="ActionScriptDefault_Text">views</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ArrayCollection</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">layersView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">explorerView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">perspective</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">rightTopViews</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">views</span>;
+            
+            <span class="ActionScriptComment">// Right-Mid Views
+</span>            
+            <span class="ActionScriptDefault_Text">views</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ArrayCollection</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">interactionsView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">alignView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">perspective</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">rightMidViews</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">views</span>;
+            
+            <span class="ActionScriptComment">// Right-Bottom Views
+</span>            
+            <span class="ActionScriptDefault_Text">views</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ArrayCollection</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">views</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">propertiesView</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">perspective</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">rightBottomViews</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">views</span>;
+            
+            <span class="ActionScriptDefault_Text">settings</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">perspectives</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">perspective</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">MockDelegateHelper</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">createMockResult</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">settings</span><span class="ActionScriptOperator">,</span> 300<span class="ActionScriptOperator">,</span> <span class="ActionScriptReserved">true</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span>
+</pre></body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>&quot;Property Injection&quot; (PInj) · smohriactive</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Summary: This page explains the &quot;Property Injection&quot; (PInj) Nanoarchitecture."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="&quot;Property Injection&quot; (PInj) · smohriactive"/><meta property="og:type" content="website"/><meta property="og:url" content="https://smohriactive.github.io/index.html"/><meta property="og:description" content="Summary: This page explains the &quot;Property Injection&quot; (PInj) Nanoarchitecture."/><meta property="og:image" content="https://smohriactive.github.io/img/smohriactive-logo.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://smohriactive.github.io/img/smohriactive-logo.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/smohriactive-logo-text.svg" alt="smohriactive"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/LoginExampleFeatureSpec" target="_self">Management</a></li><li class=""><a href="/docs/UserExperienceDesignPhases" target="_self">Design</a></li><li class="siteNavGroupActive"><a href="/docs/LoginExample" target="_self">Development</a></li><li class=""><a href="https://github.com/smohriactive" target="_self">Code</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Architecture</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Example Code</h3><ul><li class="navListItem"><a class="navItem" href="/docs/LoginExample">Login Example</a></li><li class="navListItem"><a class="navItem" href="/docs/ReligionChooser">Religion Chooser</a></li><li class="navListItem"><a class="navItem" href="/docs/ThermoMK2">Thermo MK2 for Apache Flex</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Architecture</h3><ul><li class="navListItem"><a class="navItem" href="/docs/Nanoarchitecture">Nanoarchitecture</a></li><li class="navListItem"><a class="navItem" href="/docs/NanoarchitectureCmd">&quot;Command&quot; (Cmd)</a></li><li class="navListItem"><a class="navItem" href="/docs/NanoarchitectureCpll">&quot;C-Pull&quot; (Cpll)</a></li><li class="navListItem"><a class="navItem" href="/docs/NanoarchitectureCpsh">&quot;C-Push&quot; (Cpsh)</a></li><li class="navListItem"><a class="navItem" href="/docs/NanoarchitectureCtl">&quot;Controller&quot; (Ctl)</a></li><li class="navListItem"><a class="navItem" href="/docs/NanoarchitectureM">&quot;Model&quot; (M)</a></li><li class="navListItem"><a class="navItem" href="/docs/NanoarchitectureNoEvt">&quot;No Event&quot; (NoEvt)</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/NanoarchitecturePInj">&quot;Property Injection&quot; (PInj)</a></li><li class="navListItem"><a class="navItem" href="/docs/NanoarchitectureVCb">&quot;View - Code Behind / Component&quot; (VCb / VCp)</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Coding Conventions</h3><ul><li class="navListItem"><a class="navItem" href="/docs/Flex4CodingConventions">Flex 4 Coding Conventions</a></li><li class="navListItem"><a class="navItem" href="/docs/Flex3CodingConventions">Flex 3 Coding Conventions</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Miscellaneous</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ApplicationDevelopmentProcedure">Application Development Procedure</a></li><li class="navListItem"><a class="navItem" href="/docs/MigrationFromFlex3ToFlex4">Migration from Flex 3 to Flex 4</a></li><li class="navListItem"><a class="navItem" href="/docs/FlexUsageStats">Flex Usage Statistics</a></li><li class="navListItem"><a class="navItem" href="/docs/Presentations">Presentations</a></li><li class="navListItem"><a class="navItem" href="/docs/LetterOfMotivation">Letter of Motivation</a></li><li class="navListItem"><a class="navItem" href="/docs/WhatsWrongWithFlex">What&#x27;s wrong with Flex?</a></li><li class="navListItem"><a class="navItem" href="/docs/ApacheFlexLogoProposal">Apache Flex Logo Proposal</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docMainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">&quot;Property Injection&quot; (PInj)</h1></header><article><div><span><p>Summary: This page explains the &quot;Property Injection&quot; (PInj) Nanoarchitecture.</p>
+<h4><a class="anchor" aria-hidden="true" id="observing-properties-of-injected-objects-with-the-changewatcher"></a><a href="#observing-properties-of-injected-objects-with-the-changewatcher" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Observing Properties of injected objects with the ChangeWatcher</h4>
+<p>The following example is from a Robotlegs / Signals project</p>
+<pre><code class="hljs css language-actionscript">[Inject]
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">var</span> appModel:AppModel;
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postConstruct</span><span class="hljs-params">()</span>:void
+</span>{
+    ChangeWatcher.watch(appModel, <span class="hljs-string">'settings'</span>, settings_changeHandler);
+}
+
+<span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">settings_changeHandler</span><span class="hljs-params">(event:Event)</span>:void
+</span>{
+    _settings = appModel.settings;
+
+    _isSettingsDirty = <span class="hljs-literal">true</span>;
+    invalidateProperties();
+}
+</code></pre>
+<p><em>Complete source available in the <a href="https://github.com/smohriactive/masuland/tree/master/LoginExampleFx4HeroRobotlegsSignalsMobileMVCpshCmd/trunk/src/main/flex/com/masuland/loginexample/view/component/SettingsBoxCP.as]">svn repo</a>.</em></p>
+<h4><a class="anchor" aria-hidden="true" id="property-injection-pinj-with-parsley"></a><a href="#property-injection-pinj-with-parsley" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>&quot;Property Injection&quot; (PInj) with Parsley</h4>
+<pre><code class="hljs css language-actionscript">[Subscribe(scope=<span class="hljs-string">'appModel'</span>, objectId=<span class="hljs-string">'settings'</span>)]
+[Bindable]
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span> <span class="hljs-title">settings</span><span class="hljs-params">()</span>:SettingsVO
+</span>{
+    <span class="hljs-keyword">return</span> _settings;
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">set</span> <span class="hljs-title">settings</span><span class="hljs-params">(value:SettingsVO)</span>:void
+</span>{
+    _settings = value;
+
+    _isSettingsDirty = <span class="hljs-literal">true</span>;
+    invalidateProperties();
+}
+</code></pre>
+<p><em>Complete source available in the <a href="https://github.com/smohriactive/masuland/tree/master/LoginExampleFx4HeroParsleyMobileMVCpshCtl_PInj/trunk/src/main/flex/com/masuland/loginexample/view/component/SettingsBoxCP.as">svn repo</a>.</em></p>
+<h4><a class="anchor" aria-hidden="true" id="property-injection-pinj-with-spring"></a><a href="#property-injection-pinj-with-spring" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>&quot;Property Injection&quot; (PInj) with Spring</h4>
+<pre><code class="hljs css language-actionscript">[Inject(name=<span class="hljs-string">'appModel'</span>, property=<span class="hljs-string">'settings'</span>)]
+[Bindable]
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span> <span class="hljs-title">settings</span><span class="hljs-params">()</span>:SettingsVO
+</span>{
+    <span class="hljs-keyword">return</span> _settings;
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">set</span> <span class="hljs-title">settings</span><span class="hljs-params">(value:SettingsVO)</span>:void
+</span>{
+    _settings = value;
+
+    _isSettingsDirty = <span class="hljs-literal">true</span>;
+    invalidateProperties();
+}
+</code></pre>
+<p><em>Complete source available in the <a href="https://github.com/smohriactive/masuland/tree/master/LoginExampleFx4HeroSpringMobileMVCpshCtl_PInj/trunk/src/main/flex/com/masuland/loginexample/view/component/SettingsBoxCP.as">svn repo</a>.</em></p>
+<h4><a class="anchor" aria-hidden="true" id="property-injection-pinj-with-swiz"></a><a href="#property-injection-pinj-with-swiz" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>&quot;Property Injection&quot; (PInj) with Swiz</h4>
+<pre><code class="hljs css language-actionscript">[Inject(source=<span class="hljs-string">'appModel.settings'</span>, bind=<span class="hljs-string">'true'</span>)]
+[Bindable]
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span> <span class="hljs-title">settings</span><span class="hljs-params">()</span>:SettingsVO
+</span>{
+    <span class="hljs-keyword">return</span> _settings;
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">set</span> <span class="hljs-title">settings</span><span class="hljs-params">(value:SettingsVO)</span>:void
+</span>{
+    _settings = value;
+
+    _isSettingsDirty = <span class="hljs-literal">true</span>;
+    invalidateProperties();
+}
+</code></pre>
+<p><em>Complete source available in the <a href="https://github.com/smohriactive/masuland/tree/master/LoginExampleFx4HeroSwizMobileMVCpshCtl_PInj/trunk/src/main/flex/com/masuland/loginexample/view/component/SettingsBoxCP.as">svn repo</a>.</em></p>
+<h2><a class="anchor" aria-hidden="true" id="code-examples-implementing-pinj"></a><a href="#code-examples-implementing-pinj" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Code Examples Implementing PInj</h2>
+<ul>
+<li><a href="LoginExample">Login Example</a> written in Flex 3 and Flex 4.1 (MX, Spark) and Flex 4.5 (Spark)</li>
+<li><a href="ReligionChooser">Religion Chooser</a> with Flex 4.1 (Spark)</li>
+</ul>
+<p>...</p>
+<h2><a class="anchor" aria-hidden="true" id="more-nanoarchitectures"></a><a href="#more-nanoarchitectures" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>More Nanoarchitectures</h2>
+<ul>
+<li><a href="NanoarchitectureVCb">&quot;View - Code Behind / Component&quot; (VCb / VCp)</a></li>
+<li><a href="NanoarchitectureCpll">&quot;C-Pull&quot; (Cpll)</a></li>
+<li><a href="NanoarchitectureCpsh">&quot;C-Push&quot; (Cpsh)</a></li>
+<li><a href="NanoarchitectureNoEvt">&quot;No Event&quot; (NoEvt)</a></li>
+<li><a href="NanoarchitectureM">&quot;Model&quot; (M)</a></li>
+<li><a href="NanoarchitectureCtl">&quot;Controller&quot; (Ctl)</a></li>
+<li><a href="NanoarchitectureCmd">&quot;Command&quot; (Cmd)</a></li>
+</ul>
+<p>...</p>
+<h2><a class="anchor" aria-hidden="true" id="frequently-asked-questions-faqs"></a><a href="#frequently-asked-questions-faqs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Frequently Asked Questions (FAQs)</h2>
+<h4><a class="anchor" aria-hidden="true" id="what-s-a-nanoarchitecture"></a><a href="#what-s-a-nanoarchitecture" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What's a Nanoarchitecture?</h4>
+<p>Please read this page about <a href="Nanoarchitecture">Nanoarchitectures</a>.</p>
+<p>...</p>
+<h2><a class="anchor" aria-hidden="true" id="feedback"></a><a href="#feedback" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Feedback</h2>
+<p>Please feel free to post comments, suggestions or feature requests because this page is still work in progress.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/NanoarchitectureNoEvt"><span class="arrow-prev">← </span><span>Previous</span></a><a class="docs-next button" href="/docs/NanoarchitectureVCb"><span>Next</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav docOnPageNav"><ul class="toc-headings"><li><a href="#code-examples-implementing-pinj">Code Examples Implementing PInj</a></li><li><a href="#more-nanoarchitectures">More Nanoarchitectures</a></li><li><a href="#frequently-asked-questions-faqs">Frequently Asked Questions (FAQs)</a></li><li><a href="#feedback">Feedback</a></li></ul></nav></div></div></body></html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index>
+	<title>Source of ApacheFlexLogo</title>
+	<nodes>
+		<node label="html-template">
+			<node label="history">
+				<node icon="cssIcon" label="history.css" url="source/html-template/history/history.css.html"/>
+				<node label="history.js" url="source/html-template/history/history.js.txt"/>
+				<node icon="htmlIcon" label="historyFrame.html" url="source/html-template/history/historyFrame.html"/>
+			</node>
+			<node icon="htmlIcon" label="index.template.html" url="source/html-template/index.template.html"/>
+			<node icon="swfIcon" label="playerProductInstall.swf" url="source/html-template/playerProductInstall.swf"/>
+			<node label="swfobject.js" url="source/html-template/swfobject.js.txt"/>
+		</node>
+		<node label="libs">
+		</node>
+		<node label="src">
+			<node label="assets">
+				<node label="images">
+					<node icon="imageIcon" label="Apache_Feather.png" url="source/assets/images/Apache_Feather.png.html"/>
+					<node icon="imageIcon" label="Apache_Text.png" url="source/assets/images/Apache_Text.png.html"/>
+				</node>
+			</node>
+			<node icon="mxmlAppIcon" selected="true" label="index.mxml" url="source/index.mxml.html"/>
+			<node icon="actionScriptIcon" label="SettingsVO.as" url="source/SettingsVO.as.html"/>
+			<node icon="cssIcon" label="style.css" url="source/style.css.html"/>
+		</node>
+	</nodes>
+	<zipfile label="Download source (ZIP, 62K)" url="ApacheFlexLogo.zip">
+	</zipfile>
+	<sdklink label="Download Flex SDK" url="http://www.adobe.com/go/flex451_sdk_download">
+	</sdklink>
+</index>

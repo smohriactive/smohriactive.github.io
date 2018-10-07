@@ -1,0 +1,292 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>SettingsBoxCP.as</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptpackage">package</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">view</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">component</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">action</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">event</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LoadLayoutEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">action</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">event</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LoadLocaleEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">action</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">event</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LoadStyleEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">AppModel</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">state</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">SettingsBoxState</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LayoutVO</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LocaleVO</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">SettingsVO</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">masuland</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loginexample</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">vo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">StyleVO</span>;
+    
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">MouseEvent</span>;
+    
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">automation</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">IAutomationObject</span>;
+    
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">components</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Button</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">components</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">DropDownList</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">components</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">supportClasses</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">SkinnableComponent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">IndexChangeEvent</span>;
+
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">SkinState</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'closed'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">SkinState</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'open'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">SettingsBoxCP</span> <span class="ActionScriptReserved">extends</span> <span class="ActionScriptDefault_Text">SkinnableComponent</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptComment">//----------------------
+</span>        <span class="ActionScriptComment">// Skin Parts
+</span>        <span class="ActionScriptComment">//----------------------
+</span>        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">SkinPart</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'true'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">btn_settings</span>:<span class="ActionScriptDefault_Text">Button</span>;
+
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">SkinPart</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'true'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">ddl_layout</span>:<span class="ActionScriptDefault_Text">DropDownList</span>;
+
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">SkinPart</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'true'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">ddl_style</span>:<span class="ActionScriptDefault_Text">DropDownList</span>;
+
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">SkinPart</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'true'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">ddl_locale</span>:<span class="ActionScriptDefault_Text">DropDownList</span>;
+        
+        <span class="ActionScriptComment">//----------------------
+</span>        <span class="ActionScriptComment">// Properties
+</span>        <span class="ActionScriptComment">//----------------------
+</span>        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Inject</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptMetadata">Bindable</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">appModel</span>:<span class="ActionScriptDefault_Text">AppModel</span>;
+
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">MessageDispatcher</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">dispatcher</span>:<span class="ActionScriptDefault_Text">Function</span>;
+
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_settingsBoxState</span>:<span class="ActionScriptDefault_Text">String</span>;
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_settings</span>:<span class="ActionScriptDefault_Text">SettingsVO</span>;
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_currentLayout</span>:<span class="ActionScriptDefault_Text">LayoutVO</span>;
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_currentStyle</span>:<span class="ActionScriptDefault_Text">StyleVO</span>;
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_currentLocale</span>:<span class="ActionScriptDefault_Text">LocaleVO</span>;
+        
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_isSettingsDirty</span>:<span class="ActionScriptDefault_Text">Boolean</span>;
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_isCurrentLayoutDirty</span>:<span class="ActionScriptDefault_Text">Boolean</span>;
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_isCurrentStyleDirty</span>:<span class="ActionScriptDefault_Text">Boolean</span>;
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_isCurrentLocaleDirty</span>:<span class="ActionScriptDefault_Text">Boolean</span>;
+        
+        <span class="ActionScriptComment">//----------------------
+</span>        <span class="ActionScriptComment">// Getter / Setter
+</span>        <span class="ActionScriptComment">//----------------------
+</span>        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Subscribe</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'appModel'</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">objectId</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">'settingsBoxState'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Bindable</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">settingsBoxState</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_settingsBoxState</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">settingsBoxState</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">_settingsBoxState</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+            
+            <span class="ActionScriptDefault_Text">invalidateSkinState</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Subscribe</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'appModel'</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">objectId</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">'settings'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Bindable</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">settings</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">SettingsVO</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_settings</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">settings</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">SettingsVO</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">_settings</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+            
+            <span class="ActionScriptDefault_Text">_isSettingsDirty</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+            <span class="ActionScriptDefault_Text">invalidateProperties</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Subscribe</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'appModel'</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">objectId</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">'currentLayout'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Bindable</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">currentLayout</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">LayoutVO</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_currentLayout</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">currentLayout</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">LayoutVO</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">_currentLayout</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+            
+            <span class="ActionScriptDefault_Text">_isCurrentLayoutDirty</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+            <span class="ActionScriptDefault_Text">invalidateProperties</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Subscribe</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'appModel'</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">objectId</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">'currentStyle'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Bindable</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">currentStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">StyleVO</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_currentStyle</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">currentStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">StyleVO</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">_currentStyle</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+            
+            <span class="ActionScriptDefault_Text">_isCurrentStyleDirty</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+            <span class="ActionScriptDefault_Text">invalidateProperties</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Subscribe</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">'appModel'</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">objectId</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">'currentLocale'</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+        <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Bindable</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">currentLocale</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">LocaleVO</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_currentLocale</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">currentLocale</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">LocaleVO</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">_currentLocale</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+            
+            <span class="ActionScriptDefault_Text">_isCurrentLocaleDirty</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+            <span class="ActionScriptDefault_Text">invalidateProperties</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+
+        <span class="ActionScriptComment">//----------------------
+</span>        <span class="ActionScriptComment">// Methods
+</span>        <span class="ActionScriptComment">//----------------------
+</span>
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">partAdded</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">partName</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">instance</span>:<span class="ActionScriptDefault_Text">Object</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span> 
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">partAdded</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">partName</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">instance</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">instance</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">btn_settings</span><span class="ActionScriptBracket/Brace">)</span> 
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">btn_settings</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">MouseEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">CLICK</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">btn_settings_clickHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">instance</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">ddl_layout</span><span class="ActionScriptBracket/Brace">)</span> 
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">ddl_layout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">IndexChangeEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">CHANGE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">ddl_layout_changeHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">instance</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">ddl_style</span><span class="ActionScriptBracket/Brace">)</span> 
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">ddl_style</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">IndexChangeEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">CHANGE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">ddl_style_changeHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">instance</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">ddl_locale</span><span class="ActionScriptBracket/Brace">)</span> 
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">ddl_locale</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">IndexChangeEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">CHANGE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">ddl_locale_changeHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">partRemoved</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">partName</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">instance</span>:<span class="ActionScriptDefault_Text">Object</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span> 
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">partRemoved</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">partName</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">instance</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">instance</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">btn_settings</span><span class="ActionScriptBracket/Brace">)</span> 
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">btn_settings</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">removeEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">MouseEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">CLICK</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">btn_settings_clickHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">instance</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">ddl_layout</span><span class="ActionScriptBracket/Brace">)</span> 
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">ddl_layout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">removeEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">IndexChangeEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">CHANGE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">ddl_layout_changeHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">instance</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">ddl_style</span><span class="ActionScriptBracket/Brace">)</span> 
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">ddl_style</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">removeEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">IndexChangeEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">CHANGE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">ddl_style_changeHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">instance</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">ddl_locale</span><span class="ActionScriptBracket/Brace">)</span> 
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">ddl_locale</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">removeEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">IndexChangeEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">CHANGE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">ddl_locale_changeHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">getCurrentSkinState</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_settingsBoxState</span>;
+        <span class="ActionScriptBracket/Brace">}</span> 
+        
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">commitProperties</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">commitProperties</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_isSettingsDirty</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">ddl_layout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">dataProvider</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">_settings</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">layouts</span>;
+                <span class="ActionScriptDefault_Text">_isSettingsDirty</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_isCurrentLayoutDirty</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">ddl_layout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">selectedItem</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">_currentLayout</span>;
+                <span class="ActionScriptDefault_Text">ddl_style</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">dataProvider</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">_currentLayout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">styles</span>;
+                <span class="ActionScriptDefault_Text">ddl_locale</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">dataProvider</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">_currentLayout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">locales</span>;
+                
+                <span class="ActionScriptDefault_Text">_isCurrentLayoutDirty</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_isCurrentStyleDirty</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">ddl_style</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">selectedItem</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">_currentStyle</span>;
+                <span class="ActionScriptDefault_Text">_isCurrentStyleDirty</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_isCurrentLocaleDirty</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">ddl_locale</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">selectedItem</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">_currentLocale</span>;
+                <span class="ActionScriptDefault_Text">_isCurrentLocaleDirty</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptComment">//----------------------
+</span>        <span class="ActionScriptComment">// Handler
+</span>        <span class="ActionScriptComment">//----------------------
+</span>        
+        <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">btn_settings_clickHandler</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span>:<span class="ActionScriptDefault_Text">MouseEvent</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">settingsBoxState</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">SettingsBoxState</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">CLOSED</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">settingsBoxState</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">SettingsBoxState</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">OPEN</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptReserved">else</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">appModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">settingsBoxState</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">SettingsBoxState</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">CLOSED</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+
+        <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">ddl_layout_changeHandler</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span>:<span class="ActionScriptDefault_Text">IndexChangeEvent</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">dispatcher</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">LoadLayoutEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">ddl_layout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">selectedItem</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">LayoutVO</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">ddl_style_changeHandler</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span>:<span class="ActionScriptDefault_Text">IndexChangeEvent</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">dispatcher</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">LoadStyleEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">ddl_style</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">selectedItem</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">StyleVO</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">ddl_locale_changeHandler</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span>:<span class="ActionScriptDefault_Text">IndexChangeEvent</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">dispatcher</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">LoadLocaleEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">ddl_locale</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">selectedItem</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">LocaleVO</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptComment">//------------------------------
+</span>        <span class="ActionScriptComment">// Automation
+</span>        <span class="ActionScriptComment">//------------------------------
+</span>        
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">getAutomationChildren</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Array</span> 
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptDefault_Text">btn_settings</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">ddl_layout</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">ddl_style</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">ddl_locale</span><span class="ActionScriptBracket/Brace">]</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">getAutomationChildAt</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">index</span>:<span class="ActionScriptDefault_Text">int</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">IAutomationObject</span> 
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">switch</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">index</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptReserved">case</span> 0:
+                    <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">btn_settings</span>;
+                    
+                <span class="ActionScriptReserved">case</span> 1:
+                    <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">ddl_layout</span>;
+                    
+                <span class="ActionScriptReserved">case</span> 2:
+                    <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">ddl_style</span>;
+                    
+                <span class="ActionScriptReserved">default</span>:
+                    <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">ddl_locale</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">numAutomationChildren</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">int</span> 
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">return</span> 4;
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span></pre></body>
+</html>

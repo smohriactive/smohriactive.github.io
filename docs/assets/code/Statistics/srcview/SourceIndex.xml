@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index>
+	<title>Source of FlexStats</title>
+	<nodes>
+		<node label="html-template">
+			<node label="history">
+				<node label="history.css" icon="cssIcon" url="source/html-template/history/history.css.html"/>
+				<node label="history.js" url="source/html-template/history/history.js.txt"/>
+				<node label="historyFrame.html" icon="htmlIcon" url="source/html-template/history/historyFrame.html"/>
+			</node>
+			<node label="index.template.html" icon="htmlIcon" url="source/html-template/index.template.html"/>
+			<node label="playerProductInstall.swf" icon="swfIcon" url="source/html-template/playerProductInstall.swf"/>
+			<node label="swfobject.js" url="source/html-template/swfobject.js.txt"/>
+		</node>
+		<node label="libs">
+		</node>
+		<node label="src">
+			<node label="content">
+				<node label="survey_results_20111203 01-33-46.xls" url="source/content/survey_results_20111203 01-33-46.xls"/>
+				<node label="survey_results_20111203 01-35-40.xml" url="source/content/survey_results_20111203 01-35-40.xml.txt"/>
+			</node>
+			<node label="data.as" icon="actionScriptIcon" url="source/data.as.html"/>
+			<node selected="true" label="mxml_count_base.mxml" icon="mxmlAppIcon" url="source/mxml_count_base.mxml.html"/>
+			<node label="mxml_count_step.mxml" icon="mxmlIcon" url="source/mxml_count_step.mxml.html"/>
+			<node label="mxml_count_step_optimum.mxml" icon="mxmlIcon" url="source/mxml_count_step_optimum.mxml.html"/>
+		</node>
+	</nodes>
+	<zipfile label="Download source (ZIP, 36K)" url="FlexStats.zip">
+	</zipfile>
+	<sdklink label="Download Flex SDK" url="http://www.adobe.com/go/flex451_sdk_download">
+	</sdklink>
+</index>

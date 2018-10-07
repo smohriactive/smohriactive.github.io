@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index>
+	<title>Source of ProposalThermoMK2</title>
+	<nodes>
+		<node label="html-template">
+			<node label="history">
+				<node icon="cssIcon" label="history.css" url="source/html-template/history/history.css.html"/>
+				<node label="history.js" url="source/html-template/history/history.js.txt"/>
+				<node icon="htmlIcon" label="historyFrame.html" url="source/html-template/history/historyFrame.html"/>
+			</node>
+			<node icon="htmlIcon" label="index.template.html" url="source/html-template/index.template.html"/>
+			<node icon="swfIcon" label="playerProductInstall.swf" url="source/html-template/playerProductInstall.swf"/>
+			<node label="swfobject.js" url="source/html-template/swfobject.js.txt"/>
+		</node>
+		<node label="libs">
+			<node label="flexunit-4.1.0-8-flex_4.1.0.16076.swc" url="source/libs/flexunit-4.1.0-8-flex_4.1.0.16076.swc"/>
+			<node label="flexunit-aircilistener-4.1.0-8-4.1.0.16076.swc" url="source/libs/flexunit-aircilistener-4.1.0-8-4.1.0.16076.swc"/>
+			<node label="flexunit-cilistener-4.1.0-8-4.1.0.16076.swc" url="source/libs/flexunit-cilistener-4.1.0-8-4.1.0.16076.swc"/>
+			<node label="flexunit-uilistener-4.1.0-8-4.1.0.16076.swc" url="source/libs/flexunit-uilistener-4.1.0-8-4.1.0.16076.swc"/>
+			<node label="parsley-core-3.0.0.swc" url="source/libs/parsley-core-3.0.0.swc"/>
+			<node label="parsley-flex-3.0.0.swc" url="source/libs/parsley-flex-3.0.0.swc"/>
+			<node label="spicelib-commands-3.1.1.swc" url="source/libs/spicelib-commands-3.1.1.swc"/>
+			<node label="spicelib-reflect-3.0.0.swc" url="source/libs/spicelib-reflect-3.0.0.swc"/>
+			<node label="spicelib-util-3.1.0.swc" url="source/libs/spicelib-util-3.1.0.swc"/>
+		</node>
+		<node label="src">
+			<node label="main">
+				<node label="flex">
+					<node icon="packageIcon" label="org.apache.thermo" expanded="true">
+						<node icon="mxmlIcon" label="AppConfig.mxml" url="source/org/apache/thermo/AppConfig.mxml.html"/>
+					</node>
+					<node icon="packageIcon" label="org.apache.thermo.action" expanded="true">
+						<node icon="actionScriptIcon" label="AppController.as" url="source/org/apache/thermo/action/AppController.as.html"/>
+					</node>
+					<node icon="packageIcon" label="org.apache.thermo.action.event" expanded="true">
+						<node icon="actionScriptIcon" label="AppEvent.as" url="source/org/apache/thermo/action/event/AppEvent.as.html"/>
+						<node icon="actionScriptIcon" label="DesignModeEvent.as" url="source/org/apache/thermo/action/event/DesignModeEvent.as.html"/>
+						<node icon="actionScriptIcon" label="PerspectiveEvent.as" url="source/org/apache/thermo/action/event/PerspectiveEvent.as.html"/>
+					</node>
+					<node label="org.apache.thermo.action.util">
+					</node>
+					<node icon="packageIcon" label="org.apache.thermo.business.delegate" expanded="true">
+						<node icon="actionScriptIcon" label="AppMockDelegate.as" url="source/org/apache/thermo/business/delegate/AppMockDelegate.as.html"/>
+						<node icon="actionScriptIcon" label="IAppDelegate.as" url="source/org/apache/thermo/business/delegate/IAppDelegate.as.html"/>
+					</node>
+					<node icon="packageIcon" label="org.apache.thermo.business.helper" expanded="true">
+						<node icon="actionScriptIcon" label="MockDelegateHelper.as" url="source/org/apache/thermo/business/helper/MockDelegateHelper.as.html"/>
+					</node>
+					<node label="org.apache.thermo.business.service">
+					</node>
+					<node icon="packageIcon" label="org.apache.thermo.data" expanded="true">
+						<node icon="actionScriptIcon" label="AppModel.as" url="source/org/apache/thermo/data/AppModel.as.html"/>
+					</node>
+					<node icon="packageIcon" label="org.apache.thermo.data.vo" expanded="true">
+						<node icon="actionScriptIcon" label="FileVO.as" url="source/org/apache/thermo/data/vo/FileVO.as.html"/>
+						<node icon="actionScriptIcon" label="PerspectiveVO.as" url="source/org/apache/thermo/data/vo/PerspectiveVO.as.html"/>
+						<node icon="actionScriptIcon" label="SettingsVO.as" url="source/org/apache/thermo/data/vo/SettingsVO.as.html"/>
+						<node icon="actionScriptIcon" label="ToolbarActionVO.as" url="source/org/apache/thermo/data/vo/ToolbarActionVO.as.html"/>
+						<node icon="actionScriptIcon" label="ViewVO.as" url="source/org/apache/thermo/data/vo/ViewVO.as.html"/>
+					</node>
+					<node icon="packageIcon" label="org.apache.thermo.view" expanded="true">
+						<node icon="mxmlIcon" label="AppView.mxml" url="source/org/apache/thermo/view/AppView.mxml.html"/>
+					</node>
+					<node icon="packageIcon" label="org.apache.thermo.view.component" expanded="true">
+						<node icon="actionScriptIcon" label="ViewContainerComp.as" url="source/org/apache/thermo/view/component/ViewContainerComp.as.html"/>
+					</node>
+					<node icon="packageIcon" label="org.apache.thermo.view.skin" expanded="true">
+						<node icon="mxmlIcon" label="ViewContainerSkin.mxml" url="source/org/apache/thermo/view/skin/ViewContainerSkin.mxml.html"/>
+					</node>
+					<node label="org.apache.thermo.view.styles">
+						<node icon="cssIcon" label="style_thermo.css" url="source/org/apache/thermo/view/styles/style_thermo.css.html"/>
+					</node>
+					<node icon="mxmlAppIcon" selected="true" label="index.mxml" url="source/index.mxml.html"/>
+				</node>
+				<node label="locales">
+				</node>
+				<node icon="classpathIcon" label="resources" expanded="true">
+					<node label="icons">
+						<node icon="imageIcon" label="apache_flex_logo_fullcolor.png" url="source/src/main/resources/icons/apache_flex_logo_fullcolor.png.html"/>
+						<node label="apache_flex_logo_fullcolor.psd" url="source/src/main/resources/icons/apache_flex_logo_fullcolor.psd"/>
+						<node icon="imageIcon" label="as_file.png" url="source/src/main/resources/icons/as_file.png.html"/>
+						<node label="as_file.psd" url="source/src/main/resources/icons/as_file.psd"/>
+						<node icon="imageIcon" label="components.png" url="source/src/main/resources/icons/components.png.html"/>
+						<node label="components.psd" url="source/src/main/resources/icons/components.psd"/>
+						<node icon="imageIcon" label="css_file.png" url="source/src/main/resources/icons/css_file.png.html"/>
+						<node label="css_file.psd" url="source/src/main/resources/icons/css_file.psd"/>
+						<node icon="imageIcon" label="design-mode.png" url="source/src/main/resources/icons/design-mode.png.html"/>
+						<node label="design-mode.psd" url="source/src/main/resources/icons/design-mode.psd"/>
+						<node icon="imageIcon" label="direct_select_tool.png" url="source/src/main/resources/icons/direct_select_tool.png.html"/>
+						<node label="direct_select_tool.psd" url="source/src/main/resources/icons/direct_select_tool.psd"/>
+						<node icon="imageIcon" label="explorer.png" url="source/src/main/resources/icons/explorer.png.html"/>
+						<node label="explorer.psd" url="source/src/main/resources/icons/explorer.psd"/>
+						<node icon="imageIcon" label="hand_tool.png" url="source/src/main/resources/icons/hand_tool.png.html"/>
+						<node label="hand_tool.psd" url="source/src/main/resources/icons/hand_tool.psd"/>
+						<node icon="imageIcon" label="line_tool.png" url="source/src/main/resources/icons/line_tool.png.html"/>
+						<node label="line_tool.psd" url="source/src/main/resources/icons/line_tool.psd"/>
+						<node icon="imageIcon" label="maximize_view.png" url="source/src/main/resources/icons/maximize_view.png.html"/>
+						<node label="maximize_view.psd" url="source/src/main/resources/icons/maximize_view.psd"/>
+						<node icon="imageIcon" label="minimize_view.png" url="source/src/main/resources/icons/minimize_view.png.html"/>
+						<node label="minimize_view.psd" url="source/src/main/resources/icons/minimize_view.psd"/>
+						<node icon="imageIcon" label="mxml_file.png" url="source/src/main/resources/icons/mxml_file.png.html"/>
+						<node label="mxml_file.psd" url="source/src/main/resources/icons/mxml_file.psd"/>
+						<node icon="imageIcon" label="new_perspective.png" url="source/src/main/resources/icons/new_perspective.png.html"/>
+						<node label="new_perspective.psd" url="source/src/main/resources/icons/new_perspective.psd"/>
+						<node icon="imageIcon" label="outline.png" url="source/src/main/resources/icons/outline.png.html"/>
+						<node label="outline.psd" url="source/src/main/resources/icons/outline.psd"/>
+						<node icon="imageIcon" label="problems.png" url="source/src/main/resources/icons/problems.png.html"/>
+						<node label="problems.psd" url="source/src/main/resources/icons/problems.psd"/>
+						<node icon="imageIcon" label="properties.png" url="source/src/main/resources/icons/properties.png.html"/>
+						<node label="properties.psd" url="source/src/main/resources/icons/properties.psd"/>
+						<node icon="imageIcon" label="rect_tool.png" url="source/src/main/resources/icons/rect_tool.png.html"/>
+						<node label="rect_tool.psd" url="source/src/main/resources/icons/rect_tool.psd"/>
+						<node icon="imageIcon" label="refresh.png" url="source/src/main/resources/icons/refresh.png.html"/>
+						<node label="refresh.psd" url="source/src/main/resources/icons/refresh.psd"/>
+						<node icon="imageIcon" label="restore_view.png" url="source/src/main/resources/icons/restore_view.png.html"/>
+						<node label="restore_view.psd" url="source/src/main/resources/icons/restore_view.psd"/>
+						<node icon="imageIcon" label="select_tool.png" url="source/src/main/resources/icons/select_tool.png.html"/>
+						<node label="select_tool.psd" url="source/src/main/resources/icons/select_tool.psd"/>
+						<node icon="imageIcon" label="shape_tool.png" url="source/src/main/resources/icons/shape_tool.png.html"/>
+						<node label="shape_tool.psd" url="source/src/main/resources/icons/shape_tool.psd"/>
+						<node icon="imageIcon" label="source-mode.png" url="source/src/main/resources/icons/source-mode.png.html"/>
+						<node label="source-mode.psd" url="source/src/main/resources/icons/source-mode.psd"/>
+						<node icon="imageIcon" label="state.png" url="source/src/main/resources/icons/state.png.html"/>
+						<node label="state.psd" url="source/src/main/resources/icons/state.psd"/>
+						<node icon="imageIcon" label="text_tool.png" url="source/src/main/resources/icons/text_tool.png.html"/>
+						<node label="text_tool.psd" url="source/src/main/resources/icons/text_tool.psd"/>
+						<node icon="imageIcon" label="transform_tool.png" url="source/src/main/resources/icons/transform_tool.png.html"/>
+						<node label="transform_tool.psd" url="source/src/main/resources/icons/transform_tool.psd"/>
+						<node icon="imageIcon" label="zoom_tool.png" url="source/src/main/resources/icons/zoom_tool.png.html"/>
+						<node label="zoom_tool.psd" url="source/src/main/resources/icons/zoom_tool.psd"/>
+					</node>
+				</node>
+			</node>
+			<node label="test">
+				<node icon="classpathIcon" label="flex" expanded="true">
+				</node>
+			</node>
+		</node>
+		<node label="mit_licence.txt" url="source/mit_licence.txt"/>
+	</nodes>
+	<zipfile label="Download source (ZIP, 1191K)" url="ProposalThermoMK2.zip">
+	</zipfile>
+	<sdklink label="Download Flex SDK" url="http://www.adobe.com/go/flex451_sdk_download">
+	</sdklink>
+</index>
